@@ -1,6 +1,7 @@
 package io.github.kacarong.oggspeaker;
 
 import io.github.kacarong.oggspeaker.command.SpeakerCommand;
+import io.github.kacarong.oggspeaker.net.SpeakerPayloads;
 import io.github.kacarong.oggspeaker.registry.ModBlockEntities;
 import io.github.kacarong.oggspeaker.registry.ModBlocks;
 import io.github.kacarong.oggspeaker.registry.ModItems;
@@ -26,6 +27,7 @@ public class OggSpeakerMod implements ModInitializer {
         ModBlocks.register();
         ModItems.register();
         ModBlockEntities.register();
+        SpeakerPayloads.registerCommon();
 
         CommandRegistrationCallback.EVENT.register(
             (dispatcher, registryAccess, environment) -> SpeakerCommand.register(dispatcher)
