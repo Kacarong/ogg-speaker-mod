@@ -4,7 +4,6 @@ import io.github.kacarong.oggspeaker.OggSpeakerMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.network.protocol.game.ClientboundStopSoundPacket;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
@@ -13,28 +12,28 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 
 /**
- * Sends sound packets to nearby clients with an explicit (fixed) attenuation range.
+ * Plays a sound for nearby clients with an explicit (fixed) attenuation range.
  *
- * <p>The Minecraft client computes audible radius = fixedRange * max(volume, 1.0).
- * We therefore cap the packet volume at 1.0 so the user-supplied <em>range</em>
- * actually controls the audible distance, instead of being multiplied by a large
- * volume value (which made the sound audible across the entire world).</p>
+ * <p>We build a fresh inline {@link SoundEvent} with {@link SoundEvent#createFixedRangeEvent}
+ * so the client uses our range value for distance attenuation, then hand it to
+ * {@link ServerLevel#playSeededSound} which performs the same broadcast vanilla
+ * Minecraft uses for /playsound — so the audible-distance cutoff and packet
+ * targeting are handled by the engine itself rather than by us approximating it.</p>
  */
 public final class SpeakerSoundManager {
     private SpeakerSoundManager() {}
 
     public static boolean play(ServerLevel level, BlockPos pos, Identifier soundId,
                                float volume, float pitch, float rangeBlocks) {
-        boolean registered = BuiltInRegistries.SOUND_EVENT.containsKey(soundId);
-        if (!registered) {
+        if (!BuiltInRegistries.SOUND_EVENT.containsKey(soundId)) {
             OggSpeakerMod.LOGGER.warn("[OGG Speaker] Sound '{}' is not registered; sending anyway via direct event.", soundId);
         }
 
         float fixedRange = Math.max(0.5f, rangeBlocks);
-        // Client-side audible radius = fixedRange * max(packetVolume, 1.0).
-        // Cap packet volume at 1.0 so `range` is the true radius. The user's `volume`
-        // beyond 1.0 has no useful effect in vanilla MC — extra amplitude requires
-        // a louder OGG, not a bigger volume number — so we just clamp.
+        // The client computes audible radius from fixedRange directly when present
+        // (otherwise it falls back to max(volume, 1) * 16). To avoid the fallback
+        // inflating the radius, clamp packet volume at 1.0 — beyond that, vanilla
+        // MC scales radius rather than amplitude anyway.
         float packetVolume = Math.min(Math.max(volume, 0.0f), 1.0f);
 
         SoundEvent event = SoundEvent.createFixedRangeEvent(soundId, fixedRange);
@@ -44,21 +43,10 @@ public final class SpeakerSoundManager {
         double cy = pos.getY() + 0.5;
         double cz = pos.getZ() + 0.5;
 
-        long seed = level.getRandom().nextLong();
-        ClientboundSoundPacket packet = new ClientboundSoundPacket(holder, SoundSource.RECORDS, cx, cy, cz, packetVolume, pitch, seed);
-
-        // Send only to players within (range + small buffer). Anything farther
-        // would compute zero amplitude on the client anyway and just waste bandwidth.
-        double r = fixedRange + 4.0;
-        double r2 = r * r;
-        for (ServerPlayer p : level.players()) {
-            double dx = p.getX() - cx;
-            double dy = p.getY() - cy;
-            double dz = p.getZ() - cz;
-            if (dx * dx + dy * dy + dz * dz <= r2) {
-                p.connection.send(packet);
-            }
-        }
+        // Vanilla broadcast: handles distance cutoff using SoundEvent#getRange(volume)
+        // — i.e. our fixedRange — and produces a proper ClientboundSoundPacket with
+        // the inline SoundEvent so the client applies the same range for attenuation.
+        level.playSeededSound(null, cx, cy, cz, holder, SoundSource.RECORDS, packetVolume, pitch, level.getRandom().nextLong());
         return true;
     }
 

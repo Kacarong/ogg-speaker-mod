@@ -2,6 +2,7 @@
   "slot1": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot1",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot1",
@@ -12,6 +13,7 @@
   "slot2": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot2",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot2",
@@ -22,6 +24,7 @@
   "slot3": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot3",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot3",
@@ -32,6 +35,7 @@
   "slot4": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot4",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot4",
@@ -42,6 +46,7 @@
   "slot5": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot5",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot5",
@@ -52,6 +57,7 @@
   "slot6": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot6",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot6",
@@ -62,6 +68,7 @@
   "slot7": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot7",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot7",
@@ -72,6 +79,7 @@
   "slot8": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot8",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot8",
@@ -82,6 +90,7 @@
   "slot9": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot9",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot9",
@@ -92,6 +101,7 @@
   "slot10": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot10",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot10",
@@ -102,6 +112,7 @@
   "slot11": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot11",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot11",
@@ -112,6 +123,7 @@
   "slot12": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot12",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot12",
@@ -122,6 +134,7 @@
   "slot13": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot13",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot13",
@@ -132,6 +145,7 @@
   "slot14": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot14",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot14",
@@ -142,6 +156,7 @@
   "slot15": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot15",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot15",
@@ -152,6 +167,7 @@
   "slot16": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot16",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot16",
@@ -162,6 +178,7 @@
   "slot17": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot17",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot17",
@@ -172,6 +189,7 @@
   "slot18": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot18",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot18",
@@ -182,6 +200,7 @@
   "slot19": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot19",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot19",
@@ -192,6 +211,7 @@
   "slot20": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot20",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot20",
@@ -202,6 +222,7 @@
   "slot21": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot21",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot21",
@@ -212,6 +233,7 @@
   "slot22": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot22",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot22",
@@ -222,6 +244,7 @@
   "slot23": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot23",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot23",
@@ -232,6 +255,7 @@
   "slot24": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot24",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot24",
@@ -242,6 +266,7 @@
   "slot25": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot25",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot25",
@@ -252,6 +277,7 @@
   "slot26": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot26",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot26",
@@ -262,6 +288,7 @@
   "slot27": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot27",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot27",
@@ -272,6 +299,7 @@
   "slot28": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot28",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot28",
@@ -282,6 +310,7 @@
   "slot29": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot29",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot29",
@@ -292,6 +321,7 @@
   "slot30": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot30",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot30",
@@ -302,6 +332,7 @@
   "slot31": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot31",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot31",
@@ -312,6 +343,7 @@
   "slot32": {
     "category": "record",
     "subtitle": "oggspeaker.subtitle.slot32",
+    "attenuation_distance": 16,
     "sounds": [
       {
         "name": "musicquiz:slot32",

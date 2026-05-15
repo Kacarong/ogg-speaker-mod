@@ -23,7 +23,11 @@ public final class ModSounds {
     public static void register() {
         for (int i = 1; i <= OggSpeakerMod.SOUND_SLOT_COUNT; i++) {
             Identifier id = Identifier.fromNamespaceAndPath(SOUND_NAMESPACE, "slot" + i);
-            SoundEvent event = SoundEvent.createVariableRangeEvent(id);
+            // Register with a fixed audible range. The actual per-play range comes from
+            // a freshly-built inline SoundEvent in SpeakerSoundManager, but having a
+            // sane fixed default here means the client never falls back to volume*16
+            // attenuation (which is what made the sound audible everywhere).
+            SoundEvent event = SoundEvent.createFixedRangeEvent(id, OggSpeakerMod.DEFAULT_RANGE_BLOCKS);
             Registry.register(BuiltInRegistries.SOUND_EVENT, id, event);
             SLOT_IDS.add(id);
             SLOT_EVENTS.add(event);
