@@ -14,7 +14,6 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.IdentifierArgument;
-import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -25,6 +24,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
+
+import java.util.Set;
 
 public final class SpeakerCommand {
     private SpeakerCommand() {}
@@ -40,33 +41,27 @@ public final class SpeakerCommand {
 
                 .then(Commands.literal("give").executes(ctx -> giveSpeaker(ctx.getSource())))
 
-                .then(Commands.literal("list").executes(ctx -> listSlots(ctx.getSource())))
+                .then(Commands.literal("list").executes(ctx -> listSpeakers(ctx.getSource())))
 
-                .then(Commands.literal("stop")
-                    .then(Commands.argument("pos", BlockPosArgument.blockPos())
-                        .executes(ctx -> {
-                            BlockPos pos = BlockPosArgument.getLoadedBlockPos(ctx, "pos");
-                            return stopAt(ctx.getSource(), pos);
-                        })))
+                .then(Commands.literal("stop").executes(ctx -> stopAll(ctx.getSource())))
 
                 .then(Commands.literal("play")
-                    .then(Commands.argument("pos", BlockPosArgument.blockPos())
-                        .then(Commands.argument("sound", IdentifierArgument.id())
-                            .suggests(SOUND_SUGGESTIONS)
-                            .executes(ctx -> playAt(ctx, 1.0f, 1.0f, OggSpeakerMod.DEFAULT_RANGE_BLOCKS))
-                            .then(Commands.argument("volume", FloatArgumentType.floatArg(0.0f))
-                                .executes(ctx -> playAt(ctx,
-                                    FloatArgumentType.getFloat(ctx, "volume"), 1.0f, OggSpeakerMod.DEFAULT_RANGE_BLOCKS))
-                                .then(Commands.argument("pitch", FloatArgumentType.floatArg(0.5f, 2.0f))
-                                    .executes(ctx -> playAt(ctx,
+                    .then(Commands.argument("sound", IdentifierArgument.id())
+                        .suggests(SOUND_SUGGESTIONS)
+                        .executes(ctx -> playAll(ctx, 1.0f, 1.0f, OggSpeakerMod.DEFAULT_RANGE_BLOCKS))
+                        .then(Commands.argument("volume", FloatArgumentType.floatArg(0.0f, 1.0f))
+                            .executes(ctx -> playAll(ctx,
+                                FloatArgumentType.getFloat(ctx, "volume"), 1.0f, OggSpeakerMod.DEFAULT_RANGE_BLOCKS))
+                            .then(Commands.argument("pitch", FloatArgumentType.floatArg(0.5f, 2.0f))
+                                .executes(ctx -> playAll(ctx,
+                                    FloatArgumentType.getFloat(ctx, "volume"),
+                                    FloatArgumentType.getFloat(ctx, "pitch"),
+                                    OggSpeakerMod.DEFAULT_RANGE_BLOCKS))
+                                .then(Commands.argument("range", FloatArgumentType.floatArg(1.0f))
+                                    .executes(ctx -> playAll(ctx,
                                         FloatArgumentType.getFloat(ctx, "volume"),
                                         FloatArgumentType.getFloat(ctx, "pitch"),
-                                        OggSpeakerMod.DEFAULT_RANGE_BLOCKS))
-                                    .then(Commands.argument("range", FloatArgumentType.floatArg(1.0f))
-                                        .executes(ctx -> playAt(ctx,
-                                            FloatArgumentType.getFloat(ctx, "volume"),
-                                            FloatArgumentType.getFloat(ctx, "pitch"),
-                                            FloatArgumentType.getFloat(ctx, "range"))))))))));
+                                        FloatArgumentType.getFloat(ctx, "range")))))))));
     }
 
     private static int giveSpeaker(CommandSourceStack src) {
@@ -85,50 +80,56 @@ public final class SpeakerCommand {
         return 1;
     }
 
-    private static int listSlots(CommandSourceStack src) {
-        StringBuilder sb = new StringBuilder("Registered slots (").append(OggSpeakerMod.SOUND_SLOT_COUNT).append("):\n");
-        for (Identifier id : ModSounds.getSlotIds()) sb.append(" - ").append(id).append('\n');
-        src.sendSuccess(() -> Component.literal(sb.toString()), false);
-        return ModSounds.getSlotIds().size();
-    }
-
-    private static int stopAt(CommandSourceStack src, BlockPos pos) {
+    private static int listSpeakers(CommandSourceStack src) {
         ServerLevel level = src.getLevel();
-        BlockEntity be = level.getBlockEntity(pos);
-        if (!(be instanceof SpeakerBlockEntity speaker)) {
-            src.sendFailure(Component.literal("No OGG Speaker at " + pos.toShortString()));
-            return 0;
-        }
-        Identifier last = speaker.getLastSoundId();
-        if (last == null) {
-            src.sendFailure(Component.literal("Speaker has no sound to stop"));
-            return 0;
-        }
-        SpeakerSoundManager.stop(level, pos, last, speaker.getLastRange());
-        src.sendSuccess(() -> Component.literal("Stopped " + last + " near " + pos.toShortString()), true);
-        return 1;
+        Set<BlockPos> positions = SpeakerBlockEntity.getAllPositions(level);
+        StringBuilder sb = new StringBuilder("Loaded speakers in ")
+            .append(level.dimension()).append(": ").append(positions.size()).append('\n');
+        for (BlockPos p : positions) sb.append(" - ").append(p.toShortString()).append('\n');
+        sb.append("Registered sound slots: ").append(OggSpeakerMod.SOUND_SLOT_COUNT);
+        src.sendSuccess(() -> Component.literal(sb.toString()), false);
+        return positions.size();
     }
 
-    private static int playAt(CommandContext<CommandSourceStack> ctx,
-                              float volume, float pitch, float range) throws CommandSyntaxException {
-        BlockPos pos = BlockPosArgument.getLoadedBlockPos(ctx, "pos");
+    private static int playAll(CommandContext<CommandSourceStack> ctx,
+                               float volume, float pitch, float range) throws CommandSyntaxException {
         Identifier soundId = IdentifierArgument.getId(ctx, "sound");
         CommandSourceStack src = ctx.getSource();
         ServerLevel level = src.getLevel();
-        BlockEntity be = level.getBlockEntity(pos);
-        if (!(be instanceof SpeakerBlockEntity speaker)) {
-            src.sendFailure(Component.literal("No OGG Speaker at " + pos.toShortString() + " — place one first or use /speaker give"));
+        Set<BlockPos> positions = SpeakerBlockEntity.getAllPositions(level);
+        if (positions.isEmpty()) {
+            src.sendFailure(Component.literal("No OGG Speakers placed in this dimension — use /speaker give and place one."));
             return 0;
         }
-        boolean ok = SpeakerSoundManager.play(level, pos, soundId, volume, pitch, range);
-        if (ok) {
+        int played = 0;
+        for (BlockPos pos : positions) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (!(be instanceof SpeakerBlockEntity speaker)) continue;
+            SpeakerSoundManager.play(level, pos, soundId, volume, pitch, range);
             speaker.rememberLastPlayed(soundId, volume, pitch, range);
-            src.sendSuccess(() -> Component.literal(
-                "Playing " + soundId + " at " + pos.toShortString()
-                + " (vol=" + volume + " pitch=" + pitch + " range=" + range + ")"), true);
-            return 1;
+            played++;
         }
-        src.sendFailure(Component.literal("Failed to play sound: " + soundId));
-        return 0;
+        final int count = played;
+        src.sendSuccess(() -> Component.literal(
+            "Playing " + soundId + " on " + count + " speaker(s)"
+            + " (vol=" + volume + " pitch=" + pitch + " range=" + range + ")"), true);
+        return played;
+    }
+
+    private static int stopAll(CommandSourceStack src) {
+        ServerLevel level = src.getLevel();
+        Set<BlockPos> positions = SpeakerBlockEntity.getAllPositions(level);
+        int stopped = 0;
+        for (BlockPos pos : positions) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (!(be instanceof SpeakerBlockEntity speaker)) continue;
+            Identifier last = speaker.getLastSoundId();
+            if (last == null) continue;
+            SpeakerSoundManager.stop(level, pos, last, speaker.getLastRange());
+            stopped++;
+        }
+        final int count = stopped;
+        src.sendSuccess(() -> Component.literal("Stopped sound on " + count + " speaker(s)"), true);
+        return stopped;
     }
 }

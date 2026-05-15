@@ -13,11 +13,12 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 
 /**
- * Sends sound packets to nearby clients with an explicit (custom) attenuation range.
+ * Sends sound packets to nearby clients with an explicit (fixed) attenuation range.
  *
- * <p>To honour a per-call range we build a <em>direct</em> SoundEvent holder with
- * {@link SoundEvent#createFixedRangeEvent} so the client uses our range instead of
- * the registered event's variable range.</p>
+ * <p>The Minecraft client computes audible radius = fixedRange * max(volume, 1.0).
+ * We therefore cap the packet volume at 1.0 so the user-supplied <em>range</em>
+ * actually controls the audible distance, instead of being multiplied by a large
+ * volume value (which made the sound audible across the entire world).</p>
  */
 public final class SpeakerSoundManager {
     private SpeakerSoundManager() {}
@@ -26,10 +27,17 @@ public final class SpeakerSoundManager {
                                float volume, float pitch, float rangeBlocks) {
         boolean registered = BuiltInRegistries.SOUND_EVENT.containsKey(soundId);
         if (!registered) {
-            OggSpeakerMod.LOGGER.warn("[OGG Speaker] Sound '{}' is not registered; attempting to play anyway via direct event.", soundId);
+            OggSpeakerMod.LOGGER.warn("[OGG Speaker] Sound '{}' is not registered; sending anyway via direct event.", soundId);
         }
 
-        SoundEvent event = SoundEvent.createFixedRangeEvent(soundId, Math.max(0.5f, rangeBlocks));
+        float fixedRange = Math.max(0.5f, rangeBlocks);
+        // Client-side audible radius = fixedRange * max(packetVolume, 1.0).
+        // Cap packet volume at 1.0 so `range` is the true radius. The user's `volume`
+        // beyond 1.0 has no useful effect in vanilla MC — extra amplitude requires
+        // a louder OGG, not a bigger volume number — so we just clamp.
+        float packetVolume = Math.min(Math.max(volume, 0.0f), 1.0f);
+
+        SoundEvent event = SoundEvent.createFixedRangeEvent(soundId, fixedRange);
         Holder<SoundEvent> holder = Holder.direct(event);
 
         double cx = pos.getX() + 0.5;
@@ -37,9 +45,11 @@ public final class SpeakerSoundManager {
         double cz = pos.getZ() + 0.5;
 
         long seed = level.getRandom().nextLong();
-        ClientboundSoundPacket packet = new ClientboundSoundPacket(holder, SoundSource.RECORDS, cx, cy, cz, volume, pitch, seed);
+        ClientboundSoundPacket packet = new ClientboundSoundPacket(holder, SoundSource.RECORDS, cx, cy, cz, packetVolume, pitch, seed);
 
-        double r = Math.max(rangeBlocks * Math.max(volume, 1.0f), rangeBlocks) + 4.0;
+        // Send only to players within (range + small buffer). Anything farther
+        // would compute zero amplitude on the client anyway and just waste bandwidth.
+        double r = fixedRange + 4.0;
         double r2 = r * r;
         for (ServerPlayer p : level.players()) {
             double dx = p.getX() - cx;
