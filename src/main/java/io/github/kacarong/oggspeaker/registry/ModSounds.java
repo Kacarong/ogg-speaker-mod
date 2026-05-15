@@ -10,8 +10,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/** Registers SOUND_SLOT_COUNT variable-range sound events: oggspeaker:slot1 .. slotN. */
+/** Registers SOUND_SLOT_COUNT variable-range sound events under the resource-pack namespace. */
 public final class ModSounds {
+    /** Namespace used for sound assets. Resource packs override sounds under assets/{NAMESPACE}/sounds/. */
+    public static final String SOUND_NAMESPACE = "musicquiz";
+
     private static final List<Identifier> SLOT_IDS = new ArrayList<>();
     private static final List<SoundEvent> SLOT_EVENTS = new ArrayList<>();
 
@@ -19,7 +22,7 @@ public final class ModSounds {
 
     public static void register() {
         for (int i = 1; i <= OggSpeakerMod.SOUND_SLOT_COUNT; i++) {
-            Identifier id = Identifier.fromNamespaceAndPath(OggSpeakerMod.MOD_ID, "slot" + i);
+            Identifier id = Identifier.fromNamespaceAndPath(SOUND_NAMESPACE, "slot" + i);
             SoundEvent event = SoundEvent.createVariableRangeEvent(id);
             Registry.register(BuiltInRegistries.SOUND_EVENT, id, event);
             SLOT_IDS.add(id);

@@ -4,7 +4,7 @@
     "subtitle": "oggspeaker.subtitle.slot1",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot1",
         "stream": true
       }
     ]
@@ -14,7 +14,7 @@
     "subtitle": "oggspeaker.subtitle.slot2",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot2",
         "stream": true
       }
     ]
@@ -24,7 +24,7 @@
     "subtitle": "oggspeaker.subtitle.slot3",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot3",
         "stream": true
       }
     ]
@@ -34,7 +34,7 @@
     "subtitle": "oggspeaker.subtitle.slot4",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot4",
         "stream": true
       }
     ]
@@ -44,7 +44,7 @@
     "subtitle": "oggspeaker.subtitle.slot5",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot5",
         "stream": true
       }
     ]
@@ -54,7 +54,7 @@
     "subtitle": "oggspeaker.subtitle.slot6",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot6",
         "stream": true
       }
     ]
@@ -64,7 +64,7 @@
     "subtitle": "oggspeaker.subtitle.slot7",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot7",
         "stream": true
       }
     ]
@@ -74,7 +74,7 @@
     "subtitle": "oggspeaker.subtitle.slot8",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot8",
         "stream": true
       }
     ]
@@ -84,7 +84,7 @@
     "subtitle": "oggspeaker.subtitle.slot9",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot9",
         "stream": true
       }
     ]
@@ -94,7 +94,7 @@
     "subtitle": "oggspeaker.subtitle.slot10",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot10",
         "stream": true
       }
     ]
@@ -104,7 +104,7 @@
     "subtitle": "oggspeaker.subtitle.slot11",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot11",
         "stream": true
       }
     ]
@@ -114,7 +114,7 @@
     "subtitle": "oggspeaker.subtitle.slot12",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot12",
         "stream": true
       }
     ]
@@ -124,7 +124,7 @@
     "subtitle": "oggspeaker.subtitle.slot13",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot13",
         "stream": true
       }
     ]
@@ -134,7 +134,7 @@
     "subtitle": "oggspeaker.subtitle.slot14",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot14",
         "stream": true
       }
     ]
@@ -144,7 +144,7 @@
     "subtitle": "oggspeaker.subtitle.slot15",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot15",
         "stream": true
       }
     ]
@@ -154,7 +154,7 @@
     "subtitle": "oggspeaker.subtitle.slot16",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot16",
         "stream": true
       }
     ]
@@ -164,7 +164,7 @@
     "subtitle": "oggspeaker.subtitle.slot17",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot17",
         "stream": true
       }
     ]
@@ -174,7 +174,7 @@
     "subtitle": "oggspeaker.subtitle.slot18",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot18",
         "stream": true
       }
     ]
@@ -184,7 +184,7 @@
     "subtitle": "oggspeaker.subtitle.slot19",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot19",
         "stream": true
       }
     ]
@@ -194,7 +194,7 @@
     "subtitle": "oggspeaker.subtitle.slot20",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot20",
         "stream": true
       }
     ]
@@ -204,7 +204,7 @@
     "subtitle": "oggspeaker.subtitle.slot21",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot21",
         "stream": true
       }
     ]
@@ -214,7 +214,7 @@
     "subtitle": "oggspeaker.subtitle.slot22",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot22",
         "stream": true
       }
     ]
@@ -224,7 +224,7 @@
     "subtitle": "oggspeaker.subtitle.slot23",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot23",
         "stream": true
       }
     ]
@@ -234,7 +234,7 @@
     "subtitle": "oggspeaker.subtitle.slot24",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot24",
         "stream": true
       }
     ]
@@ -244,7 +244,7 @@
     "subtitle": "oggspeaker.subtitle.slot25",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot25",
         "stream": true
       }
     ]
@@ -254,7 +254,7 @@
     "subtitle": "oggspeaker.subtitle.slot26",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot26",
         "stream": true
       }
     ]
@@ -264,7 +264,7 @@
     "subtitle": "oggspeaker.subtitle.slot27",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot27",
         "stream": true
       }
     ]
@@ -274,7 +274,7 @@
     "subtitle": "oggspeaker.subtitle.slot28",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot28",
         "stream": true
       }
     ]
@@ -284,7 +284,7 @@
     "subtitle": "oggspeaker.subtitle.slot29",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot29",
         "stream": true
       }
     ]
@@ -294,7 +294,7 @@
     "subtitle": "oggspeaker.subtitle.slot30",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot30",
         "stream": true
       }
     ]
@@ -304,7 +304,7 @@
     "subtitle": "oggspeaker.subtitle.slot31",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot31",
         "stream": true
       }
     ]
@@ -314,7 +314,7 @@
     "subtitle": "oggspeaker.subtitle.slot32",
     "sounds": [
       {
-        "name": "oggspeaker:silent",
+        "name": "musicquiz:slot32",
         "stream": true
       }
     ]

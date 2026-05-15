@@ -54,7 +54,7 @@ public final class SpeakerCommand {
                         .then(Commands.argument("sound", IdentifierArgument.id())
                             .suggests(SOUND_SUGGESTIONS)
                             .executes(ctx -> playAt(ctx, 1.0f, 1.0f, OggSpeakerMod.DEFAULT_RANGE_BLOCKS))
-                            .then(Commands.argument("volume", FloatArgumentType.floatArg(0.0f, 16.0f))
+                            .then(Commands.argument("volume", FloatArgumentType.floatArg(0.0f))
                                 .executes(ctx -> playAt(ctx,
                                     FloatArgumentType.getFloat(ctx, "volume"), 1.0f, OggSpeakerMod.DEFAULT_RANGE_BLOCKS))
                                 .then(Commands.argument("pitch", FloatArgumentType.floatArg(0.5f, 2.0f))
@@ -62,7 +62,7 @@ public final class SpeakerCommand {
                                         FloatArgumentType.getFloat(ctx, "volume"),
                                         FloatArgumentType.getFloat(ctx, "pitch"),
                                         OggSpeakerMod.DEFAULT_RANGE_BLOCKS))
-                                    .then(Commands.argument("range", FloatArgumentType.floatArg(1.0f, 256.0f))
+                                    .then(Commands.argument("range", FloatArgumentType.floatArg(1.0f))
                                         .executes(ctx -> playAt(ctx,
                                             FloatArgumentType.getFloat(ctx, "volume"),
                                             FloatArgumentType.getFloat(ctx, "pitch"),
