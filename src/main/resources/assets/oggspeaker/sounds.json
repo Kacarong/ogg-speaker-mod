@@ -1,0 +1,322 @@
+{
+  "slot1": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot1",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot2": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot2",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot3": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot3",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot4": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot4",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot5": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot5",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot6": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot6",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot7": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot7",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot8": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot8",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot9": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot9",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot10": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot10",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot11": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot11",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot12": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot12",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot13": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot13",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot14": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot14",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot15": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot15",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot16": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot16",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot17": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot17",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot18": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot18",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot19": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot19",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot20": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot20",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot21": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot21",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot22": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot22",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot23": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot23",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot24": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot24",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot25": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot25",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot26": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot26",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot27": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot27",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot28": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot28",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot29": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot29",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot30": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot30",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot31": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot31",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  },
+  "slot32": {
+    "category": "record",
+    "subtitle": "oggspeaker.subtitle.slot32",
+    "sounds": [
+      {
+        "name": "oggspeaker:silent",
+        "stream": true
+      }
+    ]
+  }
+}

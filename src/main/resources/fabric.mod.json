@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "oggspeaker",
+  "version": "${version}",
+  "name": "OGG Speaker",
+  "description": "Adds a Speaker block that plays sounds (OGG via resource pack, or any registered SoundEvent) at its location. Triggered by the /speaker command or by a redstone pulse.",
+  "authors": ["Kacarong"],
+  "contact": {
+    "homepage": "https://github.com/Kacarong/ogg-speaker-mod",
+    "sources": "https://github.com/Kacarong/ogg-speaker-mod",
+    "issues": "https://github.com/Kacarong/ogg-speaker-mod/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/oggspeaker/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.kacarong.oggspeaker.OggSpeakerMod"
+    ],
+    "client": [
+      "io.github.kacarong.oggspeaker.client.OggSpeakerClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.2",
+    "minecraft": "~26.1",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
