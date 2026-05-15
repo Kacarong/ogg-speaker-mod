@@ -19,8 +19,13 @@ public final class SpeakerPayloads {
     private SpeakerPayloads() {}
 
     public record Play(Identifier sound, BlockPos pos, float volume, float pitch) implements CustomPacketPayload {
+        // NOTE: CustomPacketPayload.createType(String) calls Identifier.withDefaultNamespace,
+        // which in this MC version *does not* parse "namespace:path" — it treats the whole
+        // string as the path under "minecraft" and an embedded ':' fails assertValidPath,
+        // crashing the mod's main entrypoint. Build the Type directly with an explicit
+        // namespaced Identifier to avoid that path.
         public static final CustomPacketPayload.Type<Play> TYPE =
-            CustomPacketPayload.createType(OggSpeakerMod.MOD_ID + ":play");
+            new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(OggSpeakerMod.MOD_ID, "play"));
         public static final StreamCodec<io.netty.buffer.ByteBuf, Play> CODEC = StreamCodec.composite(
             Identifier.STREAM_CODEC, Play::sound,
             BlockPos.STREAM_CODEC, Play::pos,
@@ -35,7 +40,7 @@ public final class SpeakerPayloads {
 
     public record Stop(Identifier sound, BlockPos pos) implements CustomPacketPayload {
         public static final CustomPacketPayload.Type<Stop> TYPE =
-            CustomPacketPayload.createType(OggSpeakerMod.MOD_ID + ":stop");
+            new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(OggSpeakerMod.MOD_ID, "stop"));
         public static final StreamCodec<io.netty.buffer.ByteBuf, Stop> CODEC = StreamCodec.composite(
             Identifier.STREAM_CODEC, Stop::sound,
             BlockPos.STREAM_CODEC, Stop::pos,
