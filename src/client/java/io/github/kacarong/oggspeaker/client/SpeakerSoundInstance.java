@@ -53,6 +53,18 @@ public final class SpeakerSoundInstance extends AbstractTickableSoundInstance {
         this.volume = computeVolume();
     }
 
+    /**
+     * Allow the sound to begin playing even when the per-tick volume is 0 (player is currently
+     * outside {@code range} of the speaker). Without this, {@code SoundEngine#play} bails out
+     * at start with {@code NOT_STARTED} for any speaker whose initial volume rounds to zero,
+     * which broke the "place 2 speakers, one is far" case and also broke command-block
+     * triggers where the operator isn't standing right next to a speaker.
+     */
+    @Override
+    public boolean canStartSilent() {
+        return true;
+    }
+
     private float computeVolume() {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
