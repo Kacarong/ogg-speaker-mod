@@ -32,7 +32,9 @@ public final class SpeakerSoundInstance extends AbstractTickableSoundInstance {
         // Wrap our raw Identifier into a SoundEvent so AbstractTickableSoundInstance's
         // protected constructor accepts it. The fixedRange on the SoundEvent is irrelevant
         // because we use Attenuation.NONE and recompute volume ourselves.
-        super(SoundEvent.createVariableRangeEvent(soundId), SoundSource.RECORDS, RandomSource.create());
+        // Route through SoundSource.PLAYERS so the in-game "Players" volume slider controls
+        // speaker output (rather than RECORDS, which is the jukebox/note-block slider).
+        super(SoundEvent.createVariableRangeEvent(soundId), SoundSource.PLAYERS, RandomSource.create());
         this.speakerPos = pos.immutable();
         this.baseVolume = Math.max(0.0f, baseVolume);
         this.pitch = pitch;

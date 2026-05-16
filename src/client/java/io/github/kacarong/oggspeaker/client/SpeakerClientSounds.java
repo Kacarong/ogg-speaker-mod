@@ -65,8 +65,8 @@ public final class SpeakerClientSounds {
             instance.requestStop();
             mc.getSoundManager().stop(instance);
         } else {
-            // Fallback: stop any instance of this sound id in the RECORDS channel
-            mc.getSoundManager().stop(payload.sound(), SoundSource.RECORDS);
+            // Fallback: stop any instance of this sound id in the PLAYERS channel
+            mc.getSoundManager().stop(payload.sound(), SoundSource.PLAYERS);
         }
     }
 
