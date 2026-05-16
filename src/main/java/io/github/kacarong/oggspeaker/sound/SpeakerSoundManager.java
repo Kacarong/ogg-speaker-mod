@@ -23,8 +23,12 @@ public final class SpeakerSoundManager {
         if (!BuiltInRegistries.SOUND_EVENT.containsKey(soundId)) {
             OggSpeakerMod.LOGGER.warn("[OGG Speaker] Sound '{}' is not registered; sending anyway — client will need an entry in sounds.json.", soundId);
         }
-        float packetVolume = Math.min(Math.max(volume, 0.0f), 1.0f);
-        SpeakerPayloads.Play payload = new SpeakerPayloads.Play(soundId, pos.immutable(), packetVolume, pitch);
+        // Don't cap volume — client handles distance attenuation itself and clamps to 1.0
+        // per-tick. Allowing >1.0 here lets users push the source gain (within reason) and
+        // we forward `range` so the client knows how far the falloff should reach.
+        float packetVolume = Math.max(volume, 0.0f);
+        float packetRange = Math.max(rangeBlocks, 1.0f);
+        SpeakerPayloads.Play payload = new SpeakerPayloads.Play(soundId, pos.immutable(), packetVolume, pitch, packetRange);
         for (ServerPlayer p : level.players()) {
             ServerPlayNetworking.send(p, payload);
         }

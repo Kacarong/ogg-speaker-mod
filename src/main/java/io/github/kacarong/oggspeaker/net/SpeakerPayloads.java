@@ -10,15 +10,16 @@ import net.minecraft.resources.Identifier;
 
 /**
  * Custom S2C payloads. We bypass vanilla {@link net.minecraft.network.protocol.game.ClientboundSoundPacket}
- * so the client can construct a {@link net.minecraft.client.resources.sounds.SimpleSoundInstance}
- * at the speaker's exact block position and let the OpenAL engine handle linear
- * distance attenuation directly — this proved more reliable than relying on the
- * vanilla sound packet, which in testing did not always attenuate.
+ * and the MC sound engine's built-in distance attenuation entirely — the client constructs a
+ * tickable SoundInstance pinned to the speaker block position with {@code Attenuation.NONE},
+ * then recomputes its own volume each tick from player distance vs. the {@code range} field
+ * carried in this payload. OpenAL's LINEAR_DISTANCE proved unreliable across our setup so we
+ * compute attenuation deterministically client-side.
  */
 public final class SpeakerPayloads {
     private SpeakerPayloads() {}
 
-    public record Play(Identifier sound, BlockPos pos, float volume, float pitch) implements CustomPacketPayload {
+    public record Play(Identifier sound, BlockPos pos, float volume, float pitch, float range) implements CustomPacketPayload {
         // NOTE: CustomPacketPayload.createType(String) calls Identifier.withDefaultNamespace,
         // which in this MC version *does not* parse "namespace:path" — it treats the whole
         // string as the path under "minecraft" and an embedded ':' fails assertValidPath,
@@ -31,6 +32,7 @@ public final class SpeakerPayloads {
             BlockPos.STREAM_CODEC, Play::pos,
             ByteBufCodecs.FLOAT, Play::volume,
             ByteBufCodecs.FLOAT, Play::pitch,
+            ByteBufCodecs.FLOAT, Play::range,
             Play::new
         );
 
